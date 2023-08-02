@@ -2,6 +2,7 @@
 
 * Скрипты для создания БД: ProjectSTP/DB_Scripts  
 
+![2023-08-02-12-27-35](https://github.com/Mr-big-cake/ProjectSTP/assets/63250784/a3128899-222e-4b60-a627-a6cbc6b21e10)
 
 Задание:
 
