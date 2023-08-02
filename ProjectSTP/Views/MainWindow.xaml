@@ -21,7 +21,7 @@
     <Grid>
         <!--Менеджеры-->
         <TabControl >
-            <TabItem Header="Менеджеры" Background="Chartreuse">
+            <TabItem Header="Менеджеры" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
@@ -92,7 +92,7 @@
                 </Grid>
             </TabItem>
             <!--Клиенты-->
-            <TabItem Header="Клиенты" Background="Chartreuse">
+            <TabItem Header="Клиенты" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
@@ -192,7 +192,7 @@
             </TabItem>
 
             <!--Товары-->
-            <TabItem Header="Товары" Background="Chartreuse">
+            <TabItem Header="Товары" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
@@ -306,7 +306,7 @@
                 </Grid>
             </TabItem>
             <!--Клиенты по менеджерам-->
-            <TabItem Header="Клиенты по менеджерам" Background="Chartreuse">
+            <TabItem Header="Клиенты по менеджерам" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
@@ -378,7 +378,7 @@
             </TabItem>
 
             <!--Клиенты по статусам-->
-            <TabItem Header="Клиенты по статусам" Background="Chartreuse">
+            <TabItem Header="Клиенты по статусам" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
@@ -455,7 +455,7 @@
                 </Grid>
             </TabItem>
             <!--Товары по клиентам-->
-            <TabItem Header="Товары по клиентам" Background="Chartreuse">
+            <TabItem Header="Товары по клиентам" Background="DeepSkyBlue">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1.1*"/>
