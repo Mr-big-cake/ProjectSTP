@@ -4,9 +4,530 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectSTP"
+        xmlns:vm ="clr-namespace:ProjectSTP.ViewModels"
+        xmlns:converters ="clr-namespace:ProjectSTP.Converters"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Софт Трейд Плюс" Height="450" Width="800">
+    
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </Window.Resources>
+    
     <Grid>
-        
+        <!--Менеджеры-->
+        <TabControl >
+            <TabItem Header="Менеджеры" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding Manager_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="   ID Менеджера: "/>
+                                        <TextBox Text="{Binding Manager_VM.ManagerIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="1*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Имя менеджера: "/>
+                                        <TextBox Text="{Binding Manager_VM.ManagerNameText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding Manager_VM.CreateButtonIsEnabled}" Command="{Binding Manager_VM.ClickToCreate}" Content="Добавить новго Менеджера" Grid.Row="1" Margin="15" />
+                            <Button IsEnabled="{Binding Manager_VM.UpdateButtonIsEnabled}" Command="{Binding Manager_VM.ClickToUpdate}"  Content="Редактировать Менеджера" Grid.Row="2" Margin="15" />
+                            <Button IsEnabled="{Binding Manager_VM.DeleteButtonIsEnabled}" Command="{Binding Manager_VM.ClickToDelete}" Content="Удалить Менеджера" Grid.Row="3" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Grid.Column="0" Margin="5" ItemsSource="{Binding Manager_VM.Items}" AutoGenerateColumns="False " IsReadOnly="True">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="ID" Binding="{Binding ManagerID}"/>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding ManagerName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <!--Клиенты-->
+            <TabItem Header="Клиенты" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding Client_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID клиента: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Client_VM.ClientIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Имя клиента: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Client_VM.ClientNameText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="ID менеджера: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Client_VM.ClientToManagerIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="4" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Статус клиента: " HorizontalAlignment="Right"/>
+                                        <ComboBox Grid.Column="1" SelectedItem="{Binding Client_VM.SelectedStatus }">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="{x:Type sys:String}">
+                                                    <sys:String>Ключевой клиент</sys:String>
+                                                    <sys:String>Обычный клиент</sys:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding Client_VM.CreateButtonIsEnabled}" Command="{Binding Client_VM.ClickToCreate}" Content="Добавить новго Клиента" Grid.Row="1" Margin="15" />
+                            <Button IsEnabled="{Binding Client_VM.UpdateButtonIsEnabled}" Command="{Binding Client_VM.ClickToUpdate}"  Content="Редактировать Клиента" Grid.Row="2" Margin="15" />
+                            <Button IsEnabled="{Binding Client_VM.DeleteButtonIsEnabled}" Command="{Binding Client_VM.ClickToDelete}" Content="Удалить Клиента" Grid.Row="3" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Grid.Column="0" Margin="5" ItemsSource="{Binding Client_VM.Items}" AutoGenerateColumns="False " IsReadOnly="True">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="ID" Binding="{Binding ClientID}"/>
+                            <DataGridTextColumn Header="Имя Клиента" Binding="{Binding ClientName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Товары-->
+            <TabItem Header="Товары" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding Product_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID Товара: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Product_VM.ProductIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Название Товара: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Product_VM.ProductNameText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="3" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Цена: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding Product_VM.PriceText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="4" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="1*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <TextBlock Grid.Column="0" Text="Тип: " HorizontalAlignment="Right"/>
+                                        <ComboBox Grid.Column="1" SelectedItem="{Binding Product_VM.SelectedType}">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="{x:Type sys:String}">
+                                                    <sys:String>Подписка</sys:String>
+                                                    <sys:String>Постоянная лицензия</sys:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+
+                                        <TextBlock Grid.Column="2" Text="Срок : " HorizontalAlignment="Right"/>
+                                        <ComboBox Grid.Column="3" SelectedItem="{Binding Product_VM.SelectedSubscriptionDuration}">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="{x:Type sys:String}">
+                                                    <sys:String>Месяц</sys:String>
+                                                    <sys:String>Квартал</sys:String>
+                                                    <sys:String>Год</sys:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding Product_VM.CreateButtonIsEnabled}" Command="{Binding Product_VM.ClickToCreate}" Content="Добавить новый Товар" Grid.Row="1" Margin="15" />
+                            <Button IsEnabled="{Binding Product_VM.UpdateButtonIsEnabled}" Command="{Binding Product_VM.ClickToUpdate}"  Content="Редактировать Товар" Grid.Row="2" Margin="15" />
+                            <Button IsEnabled="{Binding Product_VM.DeleteButtonIsEnabled}" Command="{Binding Product_VM.ClickToDelete}" Content="Удалить Товар" Grid.Row="3" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Grid.Column="0" Margin="5" ItemsSource="{Binding Product_VM.Items}" AutoGenerateColumns="False " IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ProductID}"/>
+                            <DataGridTextColumn Header="Название" Binding="{Binding ProductName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <!--Клиенты по менеджерам-->
+            <TabItem Header="Клиенты по менеджерам" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding ClientByManager_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID Клиента: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding ClientByManager_VM.CBMClientIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="ID Менеджера: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding ClientByManager_VM.CBMManagerIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding ClientByManager_VM.UpdateButtonIsEnabled}" Command="{Binding ClientByManager_VM.ClickToUpdate}"  Content="Поменять менеджера" Grid.Row="2" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Margin="5" ItemsSource="{Binding ClientByManager_VM.Items}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id клиента" Binding="{Binding ClientID}"/>
+                            <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}"/>
+                            <DataGridTextColumn Header="Id менеджера" Binding="{Binding ManagerID}"/>
+                            <DataGridTextColumn Header="Имя менеджера" Binding="{Binding ManagerName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+            <!--Клиенты по статусам-->
+            <TabItem Header="Клиенты по статусам" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding ClientByStatus_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID Клиента:  " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding ClientByStatus_VM.ClientIDText, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="224" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="Статус клиента: " HorizontalAlignment="Right"/>
+                                        <ComboBox Grid.Column="1" SelectedItem="{Binding ClientByStatus_VM.SelectedStatus }">
+                                            <ComboBox.ItemsSource>
+                                                <x:Array Type="{x:Type sys:String}">
+                                                    <sys:String>Ключевой клиент</sys:String>
+                                                    <sys:String>Обычный клиент</sys:String>
+                                                </x:Array>
+                                            </ComboBox.ItemsSource>
+                                        </ComboBox>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding ClientByStatus_VM.UpdateButtonIsEnabled}" Command="{Binding ClientByStatus_VM.ClickToUpdate}"  Content="Изменить статус" Grid.Row="1" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Margin="5" ItemsSource="{Binding ClientByStatus_VM.Items}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ClientID}"/>
+                            <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}"/>
+                            <DataGridTextColumn Header="Статус клиента" Binding="{Binding ClientStatus}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <!--Товары по клиентам-->
+            <TabItem Header="Товары по клиентам" Background="Chartreuse">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*"/>
+                        <ColumnDefinition Width="1*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"/>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="Поиск: " Margin="5"/>
+                            <TextBox Grid.Column="1" Text="{Binding ProductByClient_VM.FilterText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+                        </Grid>
+                        <Grid Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+                                <RowDefinition Height="1*"/>
+
+                            </Grid.RowDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Grid  Grid.Row="0"  Margin="15">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid Grid.Row="1" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="ID Клиента: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding ProductByClient_VM.ClientIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                    <Grid Grid.Row="2" Margin="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"/>
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" Text="ID Товара: " HorizontalAlignment="Right"/>
+                                        <TextBox Text="{Binding ProductByClient_VM.ProductIDText, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" />
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                            <Button IsEnabled="{Binding ProductByClient_VM.CreateButtonIsEnabled}" Command="{Binding ProductByClient_VM.ClickToCreate}" Content="Добавить Товар клиенту" Grid.Row="1" Margin="15" />
+                            <Button IsEnabled="{Binding ProductByClient_VM.DeleteButtonIsEnabled}" Command="{Binding ProductByClient_VM.ClickToDelete}" Content="Удалить Товар у клиента" Grid.Row="2" Margin="15" />
+                        </Grid>
+                    </Grid>
+                    <DataGrid  Margin="5" ItemsSource="{Binding ProductByClient_VM.Items}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ProductID}"/>
+                            <DataGridTextColumn Header="Название Товара" Binding="{Binding ProductName}"/>
+                            <DataGridTextColumn Header="Id клиента" Binding="{Binding ClientID}"/>
+                            <DataGridTextColumn Header="Имя клиента" Binding="{Binding ClientName}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+
+
+        </TabControl>
     </Grid>
 </Window>

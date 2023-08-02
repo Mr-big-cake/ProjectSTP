@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace CompanySTP.Converters
+namespace ProjectSTP.Converters
 {
     public class VisibilityConverter : IMultiValueConverter
     {

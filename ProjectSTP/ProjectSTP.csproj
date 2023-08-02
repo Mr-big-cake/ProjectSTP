@@ -57,6 +57,19 @@
     </ApplicationDefinition>
     <Compile Include="Abstracts\BaseVM.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
+    <Compile Include="DataAccess\SQLClientByManagerRepository.cs" />
+    <Compile Include="DataAccess\SQLClientRepository.cs" />
+    <Compile Include="DataAccess\SQLClientStatusRepository.cs" />
+    <Compile Include="DataAccess\SQLManagerRepository.cs" />
+    <Compile Include="DataAccess\SQLProductByClientRepository.cs" />
+    <Compile Include="DataAccess\SQLProductRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\ClientByManager.cs" />
+    <Compile Include="Models\ClientByStatus.cs" />
+    <Compile Include="Models\Manager.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\ProductByClient.cs" />
     <Compile Include="Utilities\DelegateCommand.cs" />
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -66,6 +79,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Utilities\RegularExpressions.cs" />
+    <Compile Include="ViewModels\ClientByManagerVM.cs" />
+    <Compile Include="ViewModels\ClientByStatusVM.cs" />
+    <Compile Include="ViewModels\ClientVM.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ManagerVM.cs" />
+    <Compile Include="ViewModels\ProductByClientVM.cs" />
+    <Compile Include="ViewModels\ProductVM.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -97,11 +118,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataAccess\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
