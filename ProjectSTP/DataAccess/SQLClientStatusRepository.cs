@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSTP.Models
 {
-    internal class SQLClientByStatusRepository : IRepository<ClientByStatus>
+    public class SQLClientByStatusRepository : IRepository<ClientByStatus>
     {
         public string ConnectionString { get; set; }
         public SQLClientByStatusRepository()

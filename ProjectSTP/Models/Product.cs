@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSTP.Models
 {
-    internal class Product
+    public class Product
     {
         public int ProductID { get; set; }
         public string ProductName { get; set; }

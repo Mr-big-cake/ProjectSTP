@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace ProjectSTP.Models
 {
-    internal class SQLProductRepository : IRepository<Product>
+    public class SQLProductRepository : IRepository<Product>
     {
         public string ConnectionString { get; set; }
         public SQLProductRepository()

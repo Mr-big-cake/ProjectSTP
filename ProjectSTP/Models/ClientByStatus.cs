@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSTP.Models
 {
-    internal class ClientByStatus
+    public class ClientByStatus
     {
         public int ClientID { get; set; }
         public string ClientName { get; set; }

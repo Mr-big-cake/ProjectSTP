@@ -9,7 +9,7 @@ using System.Xml.Linq;
 
 namespace ProjectSTP.Models
 {
-    internal class Manager
+    public class Manager
     {
         public int ManagerID { get; set; }
         public string ManagerName { get; set; }

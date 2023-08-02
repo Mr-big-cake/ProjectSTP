@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace ProjectSTP.Models
 {
-    internal class SQLClientRepository : IRepository<Client>
+    public class SQLClientRepository : IRepository<Client>
     {
         public string ConnectionString { get; set; }
         public SQLClientRepository()

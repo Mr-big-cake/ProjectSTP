@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectSTP.Models
 {
-    internal class Client
+    public class Client
     {
         public int ClientID { get; set; }
         public int ManagerID { get; set; }

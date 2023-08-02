@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace ProjectSTP.Models
 {
-    internal class SQLManagerRepository : IRepository<Manager>
+    public class SQLManagerRepository : IRepository<Manager>
     {
         public string ConnectionString { get; set; }
         public SQLManagerRepository()
