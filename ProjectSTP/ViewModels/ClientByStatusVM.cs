@@ -10,6 +10,8 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using ProjectSTP.Utilities;
+using System.Timers;
+using System.Threading;
 
 namespace ProjectSTP.ViewModels
 {
@@ -137,10 +139,14 @@ namespace ProjectSTP.ViewModels
             Update();
             Items.Filter = FilterClientByStatus;
         }
-        
+
         public void Update()
         {
-            Items = CollectionViewSource.GetDefaultView(ClientByStatus.GetClientByStatuss());
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Items = CollectionViewSource.GetDefaultView(ClientByStatus.GetClientByStatuss());
+                Items.Filter = FilterClientByStatus;
+            });
         }
         #endregion
 

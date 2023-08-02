@@ -284,7 +284,11 @@ namespace ProjectSTP.ViewModels
         }
         public void Update()
         {
-            Items = CollectionViewSource.GetDefaultView(Product.GetProducts());
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Items = CollectionViewSource.GetDefaultView(Product.GetProducts());
+                Items.Filter = FilterProduct;
+            });
         }
         #endregion
     }

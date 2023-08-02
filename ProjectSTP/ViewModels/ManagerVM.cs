@@ -219,7 +219,11 @@ namespace ProjectSTP.ViewModels
 
         public void Update()
         {
-            Items = CollectionViewSource.GetDefaultView(Manager.GetManagers());
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Items = CollectionViewSource.GetDefaultView(Manager.GetManagers());
+                Items.Filter = FilterManager;
+            });
         }
         #endregion 
     }

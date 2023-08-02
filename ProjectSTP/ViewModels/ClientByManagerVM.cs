@@ -151,7 +151,11 @@ namespace ProjectSTP.ViewModels
         }
         public void Update()
         {
-            Items = CollectionViewSource.GetDefaultView(ClientByManager.GetClientByManagers());
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Items = CollectionViewSource.GetDefaultView(ClientByManager.GetClientByManagers());
+                Items.Filter = FilterClientByManager;
+            });
         }
         #endregion
     }
