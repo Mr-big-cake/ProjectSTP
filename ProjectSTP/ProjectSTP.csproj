@@ -114,10 +114,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DB_Scripts\CreateTable.sql" />
+    <Content Include="DB_Scripts\InsertInto.sql" />
+    <Content Include="DB_Scripts\Procedure.sql" />
+    <Content Include="DB_Scripts\SELECT_1.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
